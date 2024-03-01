@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 
 import "./App.css";
+import Product from "./components/Products/Products"
+import Posts from "./components/Products/Posts"
 
 import Signup from "./components/Signup";
 
@@ -12,6 +14,13 @@ function App() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [sessionToken, setSessionToken] = useState("");
+  const [showProducts, setShowProducts] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem("MyToken")) {
+      setSessionToken(localStorage.getItem("MyToken"));
+    }
+  }, []);
 
   const handleChange = (state, value) => {
     switch (state) {
@@ -22,10 +31,10 @@ function App() {
         setLastName(value);
         break;
       case "email":
-        setLastName(value);
+        setEmail(value);
         break;
       case "password":
-        setLastName(value);
+        setPassword(value);
         break;
       default:
         console.log("Something went wrong");
@@ -40,18 +49,31 @@ function App() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: {
+          body: JSON.stringify({
             first: firstName,
             last: lastName,
             email: email,
             password: password,
-          },
+          }),
         })
       ).json();
-      console.log(response)
+
+      updateToken(response.Token);
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const updateToken = (token) => {
+    console.log("Token Updated");
+    localStorage.setItem("MyToken", token);
+    setSessionToken(token);
+  };
+
+  const clearToken = () => {
+    console.log("Token Cleared");
+    localStorage.removeItem("MyToken");
+    setSessionToken("");
   };
 
   return (
@@ -60,8 +82,9 @@ function App() {
         <Signup handleChange={handleChange} handleSignup={handleSignup} />
       ) : (
         <>
-          <button>Logout</button>
-          <p>[Products]</p>
+          <button onClick={clearToken}>Logout</button>
+          <button style={{margin: "1em"}} onClick={() => setShowProducts((prev) => !prev)}>{showProducts ? "Show Posts" : "Show Products"}</button>
+          {showProducts ? <Product /> : <Posts />}
         </>
       )}
     </>

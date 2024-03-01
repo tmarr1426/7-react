@@ -1,0 +1,54 @@
+.card {
+    border: 0.1em solid white;
+    position: relative;
+    border-radius: 1em;
+    background-color: grey;
+    min-width: 15em;
+  }
+  
+  .card-product-emoji {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    transform: scale(1.1);
+    height: 100px;
+    min-width: 120px;
+    max-width: 130px;
+    margin-top: 1em;
+    padding-top: 0.5em;
+    width: 100%;
+    margin-inline: auto;
+    filter: drop-shadow(0.1em 0.1em 0.1em black);
+  }
+  
+  .card-product-price {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 2em;
+    margin: 0;
+    text-shadow: 0.1em 0.1em 0.1em black;
+  }
+  
+  .card-product-name {
+    text-shadow: 0.1em 0.1em 0.1em black;
+    font-size: 1.6em;
+  }
+  
+  .card-product-tags {
+    background-color: rgba(0, 0, 0, 0.2);
+    list-style-type: none;
+    padding: 1em;
+    min-width: 10em;
+    max-width: fit-content;
+    margin-inline: auto;
+    border-radius: 0.3em;
+    text-shadow: 0.1em 0.1em 0.1em black;
+    border: 0.2em solid lightgrey;
+  }
+  
+  .card-product-tag {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 0.3em;
+    margin: 0.3em;
+    padding: 0.2em;
+  }
