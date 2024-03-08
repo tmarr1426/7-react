@@ -28,7 +28,7 @@ const Posts = () => {
 
   const handleSubmit = async () => {
     try {
-        setStatus("Loading")
+      setStatus("Loading");
       const json = await (
         await fetch("http://localhost:8081/post/create", {
           method: "POST",
@@ -41,23 +41,24 @@ const Posts = () => {
           }),
         })
       ).json();
-      if(json.Created){
-        setStatus("Message Created")
-      };
+      if (json.Created) {
+        setStatus("Message Created");
+      }
     } catch (err) {
       console.log(err);
     }
   };
 
   const displayAllPosts = () => {
-    return allPosts.map((i) => (
-      <div style={{ border: ".5em solid white" }} key={i._id}>
-        <p>
-          <b>{i.text}</b>
-        </p>
-      </div>
-    ))
-    .reverse();
+    return allPosts
+      .map((i) => (
+        <div style={{ border: ".5em solid white" }} key={i._id}>
+          <p>
+            <b>{i.text}</b>
+          </p>
+        </div>
+      ))
+      .reverse();
   };
 
   return (
@@ -65,7 +66,7 @@ const Posts = () => {
       <h1>Posts</h1>
       <input onChange={(e) => setUserText(e.target.value)} />
       <button onClick={handleSubmit}>Create a Post</button>
-        {status}
+      {status}
       <h2>All Posts</h2>
 
       <div>{displayAllPosts()}</div>
