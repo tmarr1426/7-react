@@ -1,0 +1,8 @@
+.user-container {
+    border: 0.1em solid white;
+    height: 60dvh;
+    border-radius: 0.3em;
+    margin: 1em;
+    padding: 1em;
+    transition: all var(--transition-speed) ease-in-out;
+  }
